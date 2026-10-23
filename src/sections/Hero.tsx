@@ -43,7 +43,7 @@ export function Hero() {
         </span>
         <h1 className="font-display text-[clamp(40px,6.4vw,78px)] leading-[1.02] font-semibold tracking-[-0.035em]">
           {headline.before}
-          <span className="text-forest">{headline.highlight}</span>
+          <span className="inline-block text-forest">{headline.highlight}</span>
           {headline.after}
         </h1>
         <p className="max-w-[640px] text-[clamp(17px,1.6vw,20px)] leading-[1.55] text-lichen">{site.intro}</p>
@@ -73,15 +73,6 @@ export function Hero() {
           {site.heroBadge}
         </div>
       </div>
-
-      <dl className="mx-auto grid max-w-[1200px] gap-4 pt-12 sm:grid-cols-3">
-        {site.stats.map((stat) => (
-          <div key={stat.value} className="flex flex-col-reverse gap-1.5 border-t border-line-strong px-1 py-2">
-            <dt className="text-[15px] text-lichen">{stat.label}</dt>
-            <dd className="font-display text-[44px] font-semibold tracking-[-0.03em] text-forest">{stat.value}</dd>
-          </div>
-        ))}
-      </dl>
     </section>
   )
 }

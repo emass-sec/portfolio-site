@@ -1,11 +1,7 @@
 import { MotionConfig } from 'motion/react'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
-import { About } from './sections/About'
-import { Approach } from './sections/Approach'
 import { Contact } from './sections/Contact'
-import { CtaBand } from './sections/CtaBand'
-import { Faq } from './sections/Faq'
 import { Hero } from './sections/Hero'
 import { Services } from './sections/Services'
 
@@ -23,10 +19,6 @@ export default function App() {
       <main>
         <Hero />
         <Services />
-        <Approach />
-        <About />
-        <Faq />
-        <CtaBand />
         <Contact />
       </main>
       <Footer />

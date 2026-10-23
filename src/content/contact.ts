@@ -1,8 +1,7 @@
 export const contact = {
   eyebrow: 'Contact',
-  heading: "Let's discuss your cybersecurity needs",
-  intro:
-    "You don't need a fully defined project or know exactly which service you need. Tell us about your business, the technology you use, what's worrying you, and whether you're after an assessment, technical help, strategic guidance, or a mix.",
+  heading: "Let's talk security",
+  intro: "Practical cybersecurity guidance for Denver's small businesses. Tell us a little about yours and we'll get back to you.",
   // Placeholders, to be replaced with real details.
   details: [
     { label: 'Office', value: 'East 7th Ave, Denver, CO 80203' },
