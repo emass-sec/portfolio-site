@@ -12,5 +12,8 @@
     // Only the contact API reaches the Worker; everything else is served as static assets.
     "run_worker_first": ["/api/*"]
   },
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Required for Workers Builds preview builds (`wrangler preview`) on
+  // non-production branches. Everything else is inherited from the top level.
+  "previews": {}
 }
