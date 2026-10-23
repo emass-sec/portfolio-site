@@ -9,7 +9,7 @@ interface Env {
   CONTACT_FROM: string
 }
 
-const LIMITS = { name: 100, email: 254, company: 120, message: 5000 }
+const LIMITS = { first: 60, last: 60, email: 254, phone: 40, subject: 150, message: 5000 }
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function json(body: unknown, status = 200): Response {
@@ -34,10 +34,12 @@ async function verifyTurnstile(token: string, ip: string | null, secret: string)
 }
 
 async function sendEmail(env: Env, fields: Record<keyof typeof LIMITS, string>): Promise<boolean> {
+  const name = `${fields.first} ${fields.last}`.trim()
   const text = [
-    `Name: ${fields.name}`,
+    `Name: ${name}`,
     `Email: ${fields.email}`,
-    fields.company ? `Company: ${fields.company}` : null,
+    fields.phone ? `Phone: ${fields.phone}` : null,
+    fields.subject ? `Subject: ${fields.subject}` : null,
     '',
     fields.message,
   ]
@@ -50,7 +52,7 @@ async function sendEmail(env: Env, fields: Record<keyof typeof LIMITS, string>):
     body: JSON.stringify({
       sender: env.CONTACT_FROM,
       to: [env.CONTACT_TO],
-      subject: `Website enquiry from ${fields.name}`,
+      subject: fields.subject ? `Website enquiry: ${fields.subject}` : `Website enquiry from ${name}`,
       text_body: text,
       custom_headers: [{ header: 'Reply-To', value: fields.email }],
     }),
@@ -71,13 +73,18 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
   // Honeypot: real visitors never see or fill this field.
   if (String(form.get('website') ?? '') !== '') return json({ ok: true })
 
+  const field = (key: string) => String(form.get(key) ?? '').trim()
+  // Single-line fields end up in email headers, so line breaks are flattened.
+  const line = (key: string) => field(key).replace(/[\r\n]+/g, ' ')
   const fields = {
-    name: String(form.get('name') ?? '').trim(),
-    email: String(form.get('email') ?? '').trim(),
-    company: String(form.get('company') ?? '').trim(),
-    message: String(form.get('message') ?? '').trim(),
+    first: line('first'),
+    last: line('last'),
+    email: line('email'),
+    phone: line('phone'),
+    subject: line('subject'),
+    message: field('message'),
   }
-  if (!fields.name || !fields.message || !EMAIL_RE.test(fields.email)) {
+  if (!fields.first || !fields.message || !EMAIL_RE.test(fields.email)) {
     return json({ error: 'Please fill in your name, a valid email, and a message.' }, 400)
   }
   for (const key of Object.keys(LIMITS) as (keyof typeof LIMITS)[]) {
