@@ -75,6 +75,11 @@ Without an `SMTP2GO_API_KEY` the form returns an error at the send step.
 
 Pushes to `main` deploy to production; other branches get preview URLs.
 
+If a push doesn't start a build, check that the Cloudflare Workers and
+Pages GitHub app has access to this repository (GitHub Settings >
+Applications). Builds only run for pushes made after access is granted, so
+push again once it is fixed.
+
 ## CI
 
 `.github/workflows/ci.yml` runs lint and build on every PR and push to
