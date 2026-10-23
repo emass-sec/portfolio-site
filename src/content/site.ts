@@ -4,7 +4,8 @@ export const site = {
   name: 'MasNet Cybersecurity',
   wordmark: 'MASNET',
   wordmarkSub: 'Cybersecurity',
-  eyebrow: 'Denver, Colorado · Security for small business',
+  // The second half is hidden on narrow screens so the chip stays on one line.
+  eyebrow: { place: 'Denver, Colorado', focus: 'Security for small business' },
   // The highlighted words are drawn in the accent colour.
   headline: { before: 'Cybersecurity advice for ', highlight: 'mom-and-pop', after: ' businesses' },
   intro:

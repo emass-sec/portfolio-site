@@ -38,7 +38,8 @@ export function Hero() {
       >
         <span className="chip self-center">
           <span className="size-[7px] rounded-full bg-forest" aria-hidden="true" />
-          {site.eyebrow}
+          {site.eyebrow.place}
+          <span className="hidden sm:inline">· {site.eyebrow.focus}</span>
         </span>
         <h1 className="font-display text-[clamp(40px,6.4vw,78px)] leading-[1.02] font-semibold tracking-[-0.035em]">
           {headline.before}
