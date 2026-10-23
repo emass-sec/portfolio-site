@@ -1,0 +1,16 @@
+// Cloudflare Worker config. Deliberately has no "routes" or domain:
+// bind the custom domain in the Cloudflare dashboard
+// (Worker > Settings > Domains & Routes).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfolio-site",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    // Only the contact API reaches the Worker; everything else is served as static assets.
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": { "enabled": true }
+}

@@ -1,0 +1,7 @@
+# Copy to .dev.vars for local dev. In production set these with:
+#   npx wrangler secret put <NAME>
+# The Turnstile value below is Cloudflare's always-pass test secret.
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+SMTP2GO_API_KEY=
+CONTACT_TO=you@example.com
+CONTACT_FROM=website@example.com

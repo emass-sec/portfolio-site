@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+      # Fails if any string listed in the FORBIDDEN_STRINGS secret (one per
+      # line, e.g. your domain or email) appears in tracked files. Keeps
+      # deployment-specific details out of this public repo.
+      - name: Check for forbidden strings
+        env:
+          FORBIDDEN_STRINGS: ${{ secrets.FORBIDDEN_STRINGS }}
+        run: |
+          if [ -z "$FORBIDDEN_STRINGS" ]; then
+            echo "FORBIDDEN_STRINGS secret not set; skipping."
+            exit 0
+          fi
+          printf '%s\n' "$FORBIDDEN_STRINGS" | sed '/^[[:space:]]*$/d' > "$RUNNER_TEMP/forbidden.txt"
+          if git grep -n -i -F -f "$RUNNER_TEMP/forbidden.txt" -- . ':!package-lock.json' > /dev/null; then
+            echo "::error::A forbidden string was found in the repository."
+            git grep -l -i -F -f "$RUNNER_TEMP/forbidden.txt" -- . ':!package-lock.json'
+            exit 1
+          fi
+          echo "No forbidden strings found."
