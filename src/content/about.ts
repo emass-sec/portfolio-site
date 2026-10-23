@@ -1,9 +1,3 @@
-export interface TeamMember {
-  name: string
-  role: string
-  initials: string
-}
-
 export const about = {
   eyebrow: 'About',
   heading: 'Practical expertise. Informed decisions. Meaningful improvements.',
@@ -20,12 +14,4 @@ export const about = {
     'Make informed decisions about security measures and technology',
     'Develop a practical approach to ongoing security improvement',
   ],
-  teamHeading: 'Our team',
-  // Placeholders apart from the founder, to be replaced.
-  team: [
-    { name: 'Eric M', role: 'Founder', initials: 'EM' },
-    { name: 'Joey Jones', role: 'Project Manager', initials: 'JJ' },
-    { name: 'Billy Bob', role: 'Senior Security Engineer', initials: 'BB' },
-    { name: 'Chris P Bacon', role: 'Junior Security Engineer', initials: 'CB' },
-  ] satisfies TeamMember[],
 }

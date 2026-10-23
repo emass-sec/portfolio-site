@@ -29,28 +29,6 @@ export function About() {
           </ul>
         </div>
       </div>
-
-      <div className="mt-[72px] flex flex-col gap-6">
-        <h3 className="font-display text-[26px] font-semibold tracking-[-0.02em]">{about.teamHeading}</h3>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {about.team.map((member, i) => (
-            <li key={member.name} className="flex items-center gap-4 rounded-card border border-line bg-white p-6">
-              <span
-                className={`flex size-14 flex-none items-center justify-center rounded-full font-display text-lg font-semibold ${
-                  i === 0 ? 'bg-forest text-white' : 'bg-sage-300 text-forest'
-                }`}
-                aria-hidden="true"
-              >
-                {member.initials}
-              </span>
-              <div className="flex flex-col gap-[3px]">
-                <span className="font-semibold">{member.name}</span>
-                <span className="text-sm text-lichen">{member.role}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
     </Section>
   )
 }

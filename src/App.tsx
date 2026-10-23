@@ -8,7 +8,6 @@ import { CtaBand } from './sections/CtaBand'
 import { Faq } from './sections/Faq'
 import { Hero } from './sections/Hero'
 import { Services } from './sections/Services'
-import { Testimonials } from './sections/Testimonials'
 
 export default function App() {
   return (
@@ -26,7 +25,6 @@ export default function App() {
         <Services />
         <Approach />
         <About />
-        <Testimonials />
         <Faq />
         <CtaBand />
         <Contact />
