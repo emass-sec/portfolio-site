@@ -51,7 +51,7 @@ export function Turnstile({ siteKey, resetKey, onToken }: TurnstileProps) {
         if (cancelled || !container.current || !window.turnstile) return
         widgetId.current = window.turnstile.render(container.current, {
           sitekey: siteKey,
-          theme: 'dark',
+          theme: 'light',
           callback: (token: string) => onTokenRef.current(token),
           'expired-callback': () => onTokenRef.current(null),
           'error-callback': () => onTokenRef.current(null),

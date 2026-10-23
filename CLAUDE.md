@@ -12,8 +12,9 @@ See README.md for setup, configuration and deployment.
 - One page only: sections are anchors (`#services`, `#projects`, `#about`,
   `#contact`). No client-side router.
 - Site copy belongs in `src/content/`, not inline in components.
-- Keep Three.js code under `src/three/` and lazy-loaded, so the first paint
-  does not wait for it. Respect `prefers-reduced-motion`.
+- Keep the hero animation (a plain 2D canvas) under `src/hero/` and
+  lazy-loaded, so the first paint does not wait for it. Respect
+  `prefers-reduced-motion`.
 - The Worker only handles `/api/*` (`run_worker_first`); static assets never hit it.
 
 ## Checks before a PR

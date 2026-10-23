@@ -24,7 +24,5 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_')
   return {
     plugins: [react(), tailwindcss(), cloudflare(), siteUrlTags(env.VITE_SITE_URL)],
-    // The lazy-loaded Three.js chunk is ~900 kB minified (~245 kB gzip) by design.
-    build: { chunkSizeWarningLimit: 1000 },
   }
 })

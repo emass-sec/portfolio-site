@@ -1,23 +1,38 @@
+import type { IconName } from '../components/Icon'
+
 export interface Service {
   title: string
   summary: string
-  points: string[]
+  icon: IconName
+}
+
+export const servicesIntro = {
+  eyebrow: 'Services',
+  title: 'Security help sized for a small business',
+  lead: 'From a one-time check-up to an ongoing watch over your systems, pick the level of help that fits.',
 }
 
 export const services: Service[] = [
   {
-    title: 'Security assessments',
-    summary: 'Placeholder. What the engagement covers and the outcome for the client.',
-    points: ['Scope point one', 'Scope point two', 'Scope point three'],
+    title: 'Quick Consultations',
+    summary:
+      'Feeling overwhelmed by constant breach headlines? Spend 90 minutes with us for simple explanations and tailored recommendations for your business.',
+    icon: 'chat',
   },
   {
-    title: 'Network architecture',
-    summary: 'Placeholder. Design, segmentation and hardening of client networks.',
-    points: ['Scope point one', 'Scope point two', 'Scope point three'],
+    title: 'Full Risk Assessments',
+    summary:
+      'Curious how your security would stand up to real attackers? We simulate one, find the weak spots and hand you actionable fixes.',
+    icon: 'target',
   },
   {
-    title: 'Cloud and infrastructure',
-    summary: 'Placeholder. Secure cloud setup, automation and monitoring.',
-    points: ['Scope point one', 'Scope point two', 'Scope point three'],
+    title: 'Digital Forensics',
+    summary: "Clicked on an email you shouldn't have? We examine your network for signs of earlier intrusion attempts.",
+    icon: 'search',
+  },
+  {
+    title: 'Ongoing Monitoring',
+    summary: "Let us keep a watchful eye on your business's systems to detect, prevent and respond to security threats.",
+    icon: 'eye',
   },
 ]

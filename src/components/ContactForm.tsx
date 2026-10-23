@@ -1,12 +1,15 @@
 import { useState, type FormEvent } from 'react'
+import { contact } from '../content/contact'
+import { Icon } from './Icon'
 import { Turnstile } from './Turnstile'
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind: 'error'; message: string }
 
 const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined
 
+const labelClass = 'flex flex-col gap-1.5 text-sm font-medium'
 const inputClass =
-  'mt-2 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-slate-500 focus:border-accent-400 focus:outline-none'
+  'rounded-xl border border-line-strong bg-field px-3.5 py-[13px] text-base font-normal text-ink placeholder:text-moss focus:border-forest focus:outline-none'
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
@@ -33,32 +36,48 @@ export function ContactForm() {
 
   if (status.kind === 'sent') {
     return (
-      <div role="status" className="rounded-2xl border border-accent-400/30 bg-accent-400/5 p-8">
-        <p className="font-display text-xl text-white">Thanks, your message is on its way.</p>
-        <p className="mt-2 text-slate-400">I'll get back to you soon.</p>
+      <div role="status" className="rounded-3xl border border-line bg-white p-9">
+        <p className="font-display text-xl font-semibold">{contact.sent.title}</p>
+        <p className="mt-2 text-lichen">{contact.sent.body}</p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" noValidate={false}>
-      <div className="grid gap-5 md:grid-cols-2">
-        <label className="block text-sm text-slate-300">
-          Name
-          <input name="name" required maxLength={100} autoComplete="name" className={inputClass} />
+    <form
+      onSubmit={handleSubmit}
+      aria-label="Contact form"
+      className="flex flex-col gap-[18px] rounded-3xl border border-line bg-white p-[clamp(24px,3vw,36px)]"
+    >
+      <div className="grid gap-3.5 sm:grid-cols-2">
+        <label className={labelClass}>
+          First name
+          <input name="first" required maxLength={60} autoComplete="given-name" className={inputClass} />
         </label>
-        <label className="block text-sm text-slate-300">
+        <label className={labelClass}>
+          Last name
+          <input name="last" maxLength={60} autoComplete="family-name" className={inputClass} />
+        </label>
+      </div>
+      <div className="grid gap-3.5 sm:grid-cols-2">
+        <label className={labelClass}>
           Email
           <input name="email" type="email" required maxLength={254} autoComplete="email" className={inputClass} />
         </label>
+        <label className={labelClass}>
+          <span>
+            Phone <span className="font-normal text-moss">(optional)</span>
+          </span>
+          <input name="phone" type="tel" maxLength={40} autoComplete="tel" className={inputClass} />
+        </label>
       </div>
-      <label className="block text-sm text-slate-300">
-        Company <span className="text-slate-500">(optional)</span>
-        <input name="company" maxLength={120} autoComplete="organization" className={inputClass} />
+      <label className={labelClass}>
+        Subject
+        <input name="subject" maxLength={150} className={inputClass} />
       </label>
-      <label className="block text-sm text-slate-300">
+      <label className={labelClass}>
         Message
-        <textarea name="message" required rows={6} maxLength={5000} className={inputClass} />
+        <textarea name="message" required rows={5} maxLength={5000} className={`${inputClass} resize-y`} />
       </label>
 
       {/* Honeypot for bots; hidden from people and assistive tech. */}
@@ -69,26 +88,28 @@ export function ContactForm() {
         </label>
       </div>
 
-      {siteKey ? (
-        <Turnstile siteKey={siteKey} resetKey={resetKey} onToken={setToken} />
-      ) : (
-        <p className="text-sm text-amber-400">VITE_TURNSTILE_SITE_KEY is not set, so the form cannot be verified.</p>
-      )}
-
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-3.5 pt-1">
+        {siteKey ? (
+          <Turnstile siteKey={siteKey} resetKey={resetKey} onToken={setToken} />
+        ) : (
+          <p className="flex items-center gap-2.5 rounded-[10px] border border-dashed border-line-strong px-3.5 py-2.5 text-[13px] text-lichen">
+            <Icon name="shieldCheck" size={18} />
+            VITE_TURNSTILE_SITE_KEY is not set, so the form cannot be verified.
+          </p>
+        )}
         <button
           type="submit"
           disabled={!token || status.kind === 'sending'}
-          className="rounded-full bg-accent-500 px-6 py-3 text-sm font-medium text-ink-950 transition hover:bg-accent-400 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-full bg-forest px-7 py-[15px] text-base font-semibold text-white transition-colors hover:bg-pine disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status.kind === 'sending' ? 'Sending…' : 'Send message'}
         </button>
-        {status.kind === 'error' && (
-          <p role="alert" className="text-sm text-red-400">
-            {status.message}
-          </p>
-        )}
       </div>
+      {status.kind === 'error' && (
+        <p role="alert" className="text-sm text-red-700">
+          {status.message}
+        </p>
+      )}
     </form>
   )
 }
