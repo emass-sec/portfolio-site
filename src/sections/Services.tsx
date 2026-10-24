@@ -1,7 +1,21 @@
 import { motion } from 'motion/react'
+import type { CSSProperties } from 'react'
 import { Icon } from '../components/Icon'
 import { Section, SectionHeading } from '../components/Section'
 import { services, servicesIntro } from '../content/services'
+
+const PULSE_BLOCKS = 8
+
+/** A short loading-bar of squares next to each service number. */
+function PulseBar({ offset }: { offset: number }) {
+  return (
+    <span className="flex gap-[3px]" style={{ '--offset': `${offset}s` } as CSSProperties}>
+      {Array.from({ length: PULSE_BLOCKS }, (_, i) => (
+        <span key={i} className="block-pulse" style={{ '--i': i } as CSSProperties} />
+      ))}
+    </span>
+  )
+}
 
 export function Services() {
   return (
@@ -25,8 +39,9 @@ export function Services() {
                 <Icon name={service.icon} size={26} />
               </span>
               <div className="flex flex-col gap-2.5">
-                <span className="font-mono text-xs text-moss" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
+                <span className="flex items-center gap-3" aria-hidden="true">
+                  <span className="font-mono text-xs text-moss">{String(i + 1).padStart(2, '0')}</span>
+                  <PulseBar offset={i * 0.3} />
                 </span>
                 <h3 className="font-display text-[24px] leading-[1.2] font-semibold tracking-[-0.015em]">
                   {service.title}
