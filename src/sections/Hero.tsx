@@ -1,27 +1,63 @@
 import { motion } from 'motion/react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Icon } from '../components/Icon'
 import { site } from '../content/site'
+import type { ParticleHero } from '../hero/particleHero'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
-/** The mountain canvas. Its drawing code loads after the text has painted. */
-function MountainCanvas({ still }: { still: boolean }) {
+const glass = 'border border-white/15 bg-night/60 text-snow backdrop-blur-sm'
+
+/** The particle scene and its controls. Its drawing code loads after the text has painted. */
+function HeroScene({ still }: { still: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null)
+  const cursor = useRef<HTMLDivElement>(null)
+  const scene = useRef<ParticleHero | null>(null)
+  const [shape, setShape] = useState(0)
 
   useEffect(() => {
-    let stop: (() => void) | undefined
     let cancelled = false
-    void import('../hero/binaryWind').then(({ startBinaryWind }) => {
+    void import('../hero/particleHero').then(({ startParticleHero }) => {
       if (cancelled || !canvas.current) return
-      stop = startBinaryWind(canvas.current, { still })
+      setShape(0)
+      scene.current = startParticleHero(canvas.current, {
+        shapes: site.heroShapes.map((s) => s.shape),
+        still,
+        cursor: cursor.current,
+        onShapeChange: setShape,
+      })
     })
     return () => {
       cancelled = true
-      stop?.()
+      scene.current?.stop()
+      scene.current = null
     }
   }, [still])
 
-  return <canvas ref={canvas} role="img" aria-label={site.heroImageLabel} className="block h-full w-full" />
+  const current = site.heroShapes[shape]
+
+  return (
+    <>
+      <canvas ref={canvas} role="img" aria-label={site.heroImageLabel} className="block h-full w-full cursor-pointer" />
+      <div
+        ref={cursor}
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 left-0 flex size-[76px] items-center justify-center rounded-full border border-white/30 bg-forest/45 px-3 text-center font-mono text-[9px] leading-[1.35] tracking-[0.14em] text-snow uppercase opacity-0 backdrop-blur-[2px] transition-opacity duration-200"
+      >
+        {site.heroMorph.cursor}
+      </div>
+      <button
+        type="button"
+        onClick={() => scene.current?.next()}
+        aria-label={`${current.label}. ${site.heroMorph.button}`}
+        title={site.heroMorph.button}
+        className={`absolute top-5 left-5 flex items-center gap-2 rounded-full px-3.5 py-2 font-mono text-[11px] tracking-[0.08em] uppercase transition-colors hover:border-mint/60 ${glass}`}
+      >
+        <span className="size-[7px] rounded-full bg-mint shadow-[0_0_8px_var(--color-mint)]" aria-hidden="true" />
+        {current.label}
+        <Icon name="morph" size={14} strokeWidth={1.8} className="text-mint" />
+      </button>
+    </>
+  )
 }
 
 export function Hero() {
@@ -57,17 +93,17 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="relative mx-auto mt-14 h-[clamp(360px,46vw,640px)] max-w-[1280px] overflow-hidden rounded-hero border border-line bg-mist">
-        <MountainCanvas still={reducedMotion} />
-        <div className="absolute bottom-5 left-5 flex items-center gap-2.5 rounded-[14px] border border-line/90 bg-white/90 px-4 py-3 backdrop-blur-sm">
-          <Icon name="mountain" size={20} strokeWidth={1.8} className="text-forest" />
+      <div className="relative mx-auto mt-14 h-[clamp(360px,46vw,640px)] max-w-[1280px] overflow-hidden rounded-hero border border-line bg-night">
+        <HeroScene still={reducedMotion} />
+        <div className={`pointer-events-none absolute bottom-5 left-5 flex items-center gap-2.5 rounded-[14px] px-4 py-3 ${glass}`}>
+          <Icon name="mountain" size={20} strokeWidth={1.8} className="text-mint" />
           <div className="flex flex-col gap-0.5 text-left">
             <span className="text-[13px] font-semibold">{site.heroLocation.title}</span>
-            <span className="font-mono text-[11px] text-lichen">{site.heroLocation.detail}</span>
+            <span className="font-mono text-[11px] text-sage-300/80">{site.heroLocation.detail}</span>
           </div>
         </div>
         <div
-          className="absolute top-5 right-5 hidden rounded-full border border-line/90 bg-white/90 px-3.5 py-2 font-mono text-[11px] tracking-[0.08em] text-fern backdrop-blur-sm sm:block"
+          className={`pointer-events-none absolute top-5 right-5 hidden rounded-full px-3.5 py-2 font-mono text-[11px] tracking-[0.08em] text-sage-300/80 lg:block ${glass}`}
           aria-hidden="true"
         >
           {site.heroBadge}
