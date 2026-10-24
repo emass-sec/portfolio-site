@@ -49,7 +49,7 @@ export function Nav() {
             <a
               href={site.navCta.href}
               onClick={() => setOpen(false)}
-              className="inline-block rounded-full bg-forest px-5 whitespace-nowrap py-[11px] font-semibold text-white no-underline transition-colors hover:bg-pine"
+              className="btn-gloss inline-block rounded-full px-5 whitespace-nowrap py-[11px] font-semibold text-white no-underline"
             >
               {site.navCta.label}
             </a>
