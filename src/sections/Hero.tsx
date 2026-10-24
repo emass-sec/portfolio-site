@@ -78,7 +78,16 @@ export function Hero() {
           <span className="hidden sm:inline">· {site.eyebrow.focus}</span>
         </span>
 
-        <div className="relative mt-5 h-[clamp(340px,38vw,540px)] w-full overflow-hidden rounded-hero border border-line bg-night">
+        <h1 className="mt-5 text-center font-display text-[clamp(38px,5.4vw,68px)] leading-[1.04] font-semibold tracking-[-0.035em]">
+          {headline.phrases.map((phrase, i) => (
+            <Fragment key={phrase}>
+              {i > 0 && ' '}
+              <span className={`block sm:inline sm:whitespace-nowrap ${i === headline.highlight ? 'text-forest' : ''}`}>{phrase}</span>
+            </Fragment>
+          ))}
+        </h1>
+
+        <div className="relative mt-7 h-[clamp(340px,38vw,540px)] w-full md:mt-9 overflow-hidden rounded-hero border border-line bg-night shadow-[0_32px_64px_-32px_rgb(9_21_15/0.55)]">
           <HeroScene still={reducedMotion} />
           <div className={`pointer-events-none absolute bottom-5 left-5 flex items-center gap-2.5 rounded-[14px] px-4 py-3 ${glass}`}>
             <Icon name="mountain" size={20} strokeWidth={1.8} className="text-mint" />
@@ -112,14 +121,6 @@ export function Hero() {
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        <h1 className="font-display text-[clamp(38px,5.6vw,70px)] leading-[1.04] font-semibold tracking-[-0.035em]">
-          {headline.phrases.map((phrase, i) => (
-            <Fragment key={phrase}>
-              {i > 0 && ' '}
-              <span className={`block sm:inline sm:whitespace-nowrap ${i === headline.highlight ? 'text-forest' : ''}`}>{phrase}</span>
-            </Fragment>
-          ))}
-        </h1>
         <p className="font-display text-[clamp(20px,2vw,26px)] leading-[1.35] font-semibold tracking-[-0.015em] text-fern">
           {site.lead}
         </p>

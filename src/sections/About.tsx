@@ -17,11 +17,11 @@ export function About() {
           <p className="text-[17px] leading-[1.7] text-lichen">{about.context.body}</p>
         </div>
         <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-3 rounded-3xl bg-forest p-8 text-white">
+          <div className="flex flex-col gap-3 card-gloss-dark rounded-3xl p-8 text-white">
             <h3 className="font-display text-[22px] font-semibold tracking-[-0.015em]">{about.individual.title}</h3>
             <p className="text-[17px] leading-[1.7] text-[#D9E6DB]">{about.individual.body}</p>
           </div>
-          <div className="flex flex-col gap-5 rounded-3xl border border-line bg-white p-8">
+          <div className="flex flex-col gap-5 card-gloss rounded-3xl p-8">
             <h3 className="font-display text-xl font-semibold">{about.certificationsHeading}</h3>
             <ul className="flex flex-wrap gap-2">
               {about.certifications.map((cert) => (

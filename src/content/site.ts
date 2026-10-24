@@ -8,8 +8,8 @@ export const site = {
   wordmarkSub: 'Cybersecurity',
   // The second half is hidden on narrow screens so the chip stays on one line.
   eyebrow: { place: 'Denver, Colorado', focus: 'Security for small business' },
-  // Each phrase starts its own line on phones and never breaks on wider screens. The highlighted one is drawn in the accent colour.
-  headline: { phrases: ['Practical Cybersecurity.', 'Clear Guidance.', 'Stronger Defenses.'], highlight: 1 },
+  // Sits above the hero scene. Each phrase starts its own line on phones and never breaks on wider screens. The highlighted one is drawn in the accent colour.
+  headline: { phrases: ['Practical Cybersecurity.', 'Clear Guidance.'], highlight: 1 },
   lead: "Cybersecurity shouldn't be complicated or out of reach.",
   intro:
     "MasNet Cybersecurity helps Denver's small businesses understand their risks, protect their systems and data, and make informed security decisions. We combine strategic consulting with hands-on technical expertise.",
@@ -29,7 +29,7 @@ export const site = {
   heroLocation: { title: 'Based in Denver', detail: '39.74° N · 104.99° W · 5,280 ft' },
   // "MAS" in binary.
   heroBadge: '01001101 01000001 01010011',
-  // Shown directly under the hero scene.
+  // Shown directly under the hero scene, before the lead and the buttons.
   stats: [
     { value: '2 decades', label: 'Professional experience in technology and security' },
     { value: '15', label: "Years protecting the nation's most critical infrastructure" },

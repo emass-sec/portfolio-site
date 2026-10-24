@@ -21,7 +21,7 @@ export function Services() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-start gap-5">
-              <span className="flex size-[52px] flex-none items-center justify-center rounded-[14px] bg-sage-200 text-forest">
+              <span className="flex size-[52px] flex-none items-center justify-center tile-gloss rounded-[14px] text-forest">
                 <Icon name={service.icon} size={26} />
               </span>
               <div className="flex flex-col gap-2.5">
