@@ -5,13 +5,13 @@ export const site = {
   wordmark: 'MASNET',
   wordmarkSub: 'Cybersecurity',
   // The second half is hidden on narrow screens so the chip stays on one line.
-  eyebrow: { place: 'Denver, Colorado', focus: 'Security for small and home businesses' },
+  eyebrow: { place: 'Denver, Colorado', focus: 'Security for small business' },
   // The highlighted words are drawn in the accent colour.
-  headline: { before: 'Practical cybersecurity. ', highlight: 'Clear guidance.', after: ' Stronger defenses.' },
+  headline: { before: 'Cybersecurity advice for ', highlight: 'mom-and-pop', after: ' businesses' },
   intro:
-    "Cybersecurity shouldn't be complicated, confusing, or out of reach for small and home-based businesses. MasNet helps businesses across the Denver area understand their risks, strengthen their defenses, and make informed decisions about protecting their systems, data, and operations.",
-  primaryCta: { label: 'Discuss your security needs', href: '#contact' },
-  secondaryCta: { label: 'Explore our services', href: '#services' },
+    "Fifteen years in security, including thirteen protecting the nation's critical infrastructure, now working for small and medium-sized businesses across the Denver area.",
+  primaryCta: { label: 'Book a 90-minute consult', href: '#contact' },
+  secondaryCta: { label: 'See services', href: '#services' },
   navCta: { label: 'Get in touch', href: '#contact' },
   heroImageLabel:
     'Illustrated Rocky Mountain peak with streams of binary zeros and ones blowing off the summit like wind-driven snow',
@@ -19,25 +19,24 @@ export const site = {
   // "MAS" in binary.
   heroBadge: '01001101 01000001 01010011',
   stats: [
-    { value: '6', label: 'Services, from strategic advice to hands-on technical reviews' },
-    { value: '5', label: 'Steps from understanding your business to reviewing progress' },
-    { value: '1', label: "Conversation to get started. You don't need a defined project" },
+    { value: '15+', label: 'Years of professional experience in technology and security' },
+    { value: '13', label: "Years protecting the nation's most critical infrastructure" },
+    { value: '90 min', label: 'A first consultation, with plain-English answers for your business' },
   ],
   footerNote: 'Denver, Colorado',
 }
 
 export const ctaBand = {
-  eyebrow: 'Not sure where to start?',
-  title: "Let's talk about your cybersecurity",
-  body: "You don't have to know exactly what your business needs before starting a conversation. Whether you have a specific concern or want a clearer picture of your overall security, we can help you explore the next steps.",
-  cta: { label: 'Discuss your security needs', href: '#contact' },
+  eyebrow: 'Start with one conversation',
+  title: 'Ready to secure your business?',
+  body: 'Book a 90-minute consultation for simple explanations and recommendations tailored to your business.',
+  cta: { label: 'Get in touch', href: '#contact' },
 }
 
 export const navLinks = [
   { id: 'services', label: 'Services' },
-  { id: 'approach', label: 'Approach' },
+  { id: 'projects', label: 'Projects' },
   { id: 'about', label: 'About' },
-  { id: 'faq', label: 'FAQ' },
   { id: 'contact', label: 'Contact' },
 ] as const
 

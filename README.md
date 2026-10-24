@@ -13,7 +13,7 @@ so you can fork it and deploy your own copy.
 
 ```
 src/content/      All site copy: edit these files to make the site yours
-src/sections/     Hero, Services, Approach, About, Faq, CtaBand, Contact
+src/sections/     Hero, Services, Projects, About, Testimonials, CtaBand, Contact
 src/components/   Nav, Logo, Icon, Section, Footer, ContactForm, Turnstile
 src/hero/         The lazy-loaded "binary wind" mountain canvas
 worker/index.ts   POST /api/contact: verifies Turnstile, emails via SMTP2GO
