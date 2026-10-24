@@ -19,7 +19,7 @@ export function Logo({ compact = false }: { compact?: boolean }) {
         {site.wordmark}
       </span>
       {!compact && (
-        <span className="hidden pt-0.5 font-mono text-[11px] tracking-[0.14em] text-lichen uppercase sm:inline">
+        <span className="hidden pt-0.5 font-mono text-[11px] tracking-[0.14em] text-lichen uppercase sm:inline md:hidden lg:inline">
           {site.wordmarkSub}
         </span>
       )}

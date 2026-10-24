@@ -29,7 +29,7 @@ export function Nav() {
 
         <ul
           id="nav-links"
-          className={`${open ? 'flex' : 'hidden'} absolute inset-x-0 top-full flex-col gap-1 border-b border-line bg-snow px-6 py-4 text-[15px] font-medium md:static md:flex md:flex-row md:items-center md:gap-7 md:border-0 md:bg-transparent md:p-0`}
+          className={`${open ? 'flex' : 'hidden'} absolute inset-x-0 top-full flex-col gap-1 border-b border-line bg-snow px-6 py-4 text-[15px] font-medium md:static md:flex md:flex-row md:items-center md:gap-5 md:border-0 lg:gap-7 md:bg-transparent md:p-0`}
         >
           {navLinks.map((link) => (
             <li key={link.id}>
@@ -37,7 +37,7 @@ export function Nav() {
                 href={`#${link.id}`}
                 onClick={() => setOpen(false)}
                 aria-current={active === link.id ? 'true' : undefined}
-                className={`block py-2.5 no-underline transition-colors ${
+                className={`block py-2.5 whitespace-nowrap no-underline transition-colors ${
                   active === link.id ? 'text-forest' : 'text-ink hover:text-forest'
                 }`}
               >
@@ -49,7 +49,7 @@ export function Nav() {
             <a
               href={site.navCta.href}
               onClick={() => setOpen(false)}
-              className="inline-block rounded-full bg-forest px-5 py-[11px] font-semibold text-white no-underline transition-colors hover:bg-pine"
+              className="inline-block rounded-full bg-forest px-5 whitespace-nowrap py-[11px] font-semibold text-white no-underline transition-colors hover:bg-pine"
             >
               {site.navCta.label}
             </a>
