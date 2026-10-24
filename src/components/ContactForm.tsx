@@ -100,7 +100,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={!token || status.kind === 'sending'}
-          className="rounded-full bg-forest px-7 py-[15px] text-base font-semibold text-white transition-colors hover:bg-pine disabled:cursor-not-allowed disabled:opacity-50"
+          className="btn-gloss rounded-full px-7 py-[15px] text-base font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status.kind === 'sending' ? 'Sending…' : 'Send message'}
         </button>
