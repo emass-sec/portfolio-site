@@ -138,3 +138,51 @@ body {
     0 0 0 4px rgb(143 220 174 / 0.28),
     0 6px 16px -4px rgb(31 77 54 / 0.55);
 }
+
+/*
+ * A row of small squares with a pulse travelling along it, like a loading bar. Each block sets
+ * its own --i (its position); the row's --offset staggers one row against the next.
+ */
+@utility block-pulse {
+  @apply size-[7px] rounded-[2px] bg-[#2a7a50];
+  opacity: 0.16;
+  animation: block-pulse 1.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.11s + var(--offset, 0s));
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: calc(0.9 - var(--i) * 0.1);
+  }
+}
+
+/* Opacity only, so the browser can run it on the compositor without repainting. */
+@keyframes block-pulse {
+  0%,
+  45%,
+  100% {
+    opacity: 0.16;
+  }
+  18% {
+    opacity: 1;
+  }
+}
+
+/* The dark counterpart of gloss-hover, for forest cards. */
+@utility gloss-hover-dark {
+  transition:
+    box-shadow 0.3s ease,
+    translate 0.3s ease;
+
+  &:hover {
+    translate: 0 -3px;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      0 32px 60px -26px rgb(9 21 15 / 0.7);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      translate: none;
+    }
+  }
+}
