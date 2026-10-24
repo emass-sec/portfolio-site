@@ -30,6 +30,13 @@ export function About() {
                 </li>
               ))}
             </ul>
+            <ul className="flex flex-wrap gap-2 border-t border-line pt-5">
+              {about.experience.map((area) => (
+                <li key={area} className="rounded-full border border-line-strong bg-white px-3.5 py-2 text-sm text-[#1E3328]">
+                  {area}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
