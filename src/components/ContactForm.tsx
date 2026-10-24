@@ -36,7 +36,7 @@ export function ContactForm() {
 
   if (status.kind === 'sent') {
     return (
-      <div role="status" className="rounded-3xl border border-line bg-white p-9">
+      <div role="status" className="card-gloss rounded-3xl p-9">
         <p className="font-display text-xl font-semibold">{contact.sent.title}</p>
         <p className="mt-2 text-lichen">{contact.sent.body}</p>
       </div>
@@ -47,7 +47,7 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit}
       aria-label="Contact form"
-      className="flex flex-col gap-[18px] rounded-3xl border border-line bg-white p-[clamp(24px,3vw,36px)]"
+      className="flex flex-col gap-[18px] card-gloss rounded-3xl p-[clamp(24px,3vw,36px)]"
     >
       <div className="grid gap-3.5 sm:grid-cols-2">
         <label className={labelClass}>

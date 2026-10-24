@@ -4,7 +4,7 @@ import { businessSense } from '../content/site'
 export function BusinessSense() {
   return (
     <Section labelledBy="business-sense-title">
-      <div className="grid items-start gap-6 rounded-band border border-line bg-white p-[clamp(28px,5vw,64px)] lg:grid-cols-2 lg:gap-16">
+      <div className="grid items-start gap-6 card-gloss rounded-band p-[clamp(28px,5vw,64px)] lg:grid-cols-2 lg:gap-16">
         <h2 id="business-sense-title" className="heading-2">
           {businessSense.title}
         </h2>
