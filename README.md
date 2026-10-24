@@ -1,7 +1,7 @@
 # portfolio-site
 
-A single-page portfolio and services site: Vite + React + TypeScript, a
-2D canvas hero animation, Motion animations, and a contact form backed
+A single-page portfolio and services site: Vite + React + TypeScript, an
+interactive WebGL particle hero, Motion animations, and a contact form backed
 by a Cloudflare Worker with Turnstile spam protection. It deploys as one
 Cloudflare Worker with static assets, with no server or database to run.
 
@@ -15,7 +15,7 @@ so you can fork it and deploy your own copy.
 src/content/      All site copy: edit these files to make the site yours
 src/sections/     Hero, Services, Projects, About, Testimonials, CtaBand, Contact
 src/components/   Nav, Logo, Icon, Section, Footer, ContactForm, Turnstile
-src/hero/         The lazy-loaded "binary wind" mountain canvas
+src/hero/         The lazy-loaded particle scene and the shapes it morphs between
 worker/index.ts   POST /api/contact: verifies Turnstile, emails via SMTP2GO
 wrangler.jsonc    Worker config (no routes or domains)
 public/_headers   Security headers and caching for static assets

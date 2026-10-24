@@ -1,5 +1,7 @@
 // Site-wide copy. Everything a fork needs to rebrand lives in src/content.
 
+import type { HeroShape } from '../hero/shapes'
+
 export const site = {
   name: 'MasNet Cybersecurity',
   wordmark: 'MASNET',
@@ -14,7 +16,15 @@ export const site = {
   secondaryCta: { label: 'See services', href: '#services' },
   navCta: { label: 'Get in touch', href: '#contact' },
   heroImageLabel:
-    'Illustrated Rocky Mountain peak with streams of binary zeros and ones blowing off the summit like wind-driven snow',
+    'Glowing particles forming the Colorado Front Range around Pikes Peak. Clicking morphs them into the MasNet shield, a magnifying glass and a globe.',
+  // The hero's particle shapes, in order. The first one shows on load.
+  heroShapes: [
+    { shape: 'range', label: 'Pikes Peak · 14,115 ft' },
+    { shape: 'shield', label: 'Full risk assessments' },
+    { shape: 'magnifier', label: 'Digital forensics' },
+    { shape: 'globe', label: 'Ongoing monitoring' },
+  ] satisfies { shape: HeroShape; label: string }[],
+  heroMorph: { cursor: 'Click to morph', button: 'Show the next shape' },
   heroLocation: { title: 'Based in Denver', detail: '39.74° N · 104.99° W · 5,280 ft' },
   // "MAS" in binary.
   heroBadge: '01001101 01000001 01010011',
