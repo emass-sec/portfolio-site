@@ -9,8 +9,8 @@ See README.md for setup, configuration and deployment.
   lives in the Cloudflare dashboard; secrets are Worker secrets; public build
   values are `VITE_*` env vars. CI enforces this via `FORBIDDEN_STRINGS`.
 - Personal operational notes go in `CLAUDE.local.md` (gitignored).
-- One page only: sections are anchors (`#services`, `#approach`, `#about`,
-  `#faq`, `#contact`). No client-side router.
+- One page only: sections are anchors (`#services`, `#projects`, `#about`,
+  `#contact`). No client-side router.
 - Site copy belongs in `src/content/`, not inline in components.
 - Keep the hero animation (a plain 2D canvas) under `src/hero/` and
   lazy-loaded, so the first paint does not wait for it. Respect

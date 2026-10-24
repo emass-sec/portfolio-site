@@ -79,7 +79,6 @@ export function ContactForm() {
         Message
         <textarea name="message" required rows={5} maxLength={5000} className={`${inputClass} resize-y`} />
       </label>
-      <p className="text-[13px] text-lichen">{contact.privacyNote}</p>
 
       {/* Honeypot for bots; hidden from people and assistive tech. */}
       <div className="hidden" aria-hidden="true">
